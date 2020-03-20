@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -27,10 +27,9 @@ import org.apache.ibatis.transaction.TransactionFactory;
 /**
  * Creates {@link ManagedTransaction} instances.
  *
- * @see ManagedTransaction
- */
-/**
  * @author Clinton Begin
+ *
+ * @see ManagedTransaction
  */
 public class ManagedTransactionFactory implements TransactionFactory {
 
@@ -41,7 +40,7 @@ public class ManagedTransactionFactory implements TransactionFactory {
     if (props != null) {
       String closeConnectionProperty = props.getProperty("closeConnection");
       if (closeConnectionProperty != null) {
-        closeConnection = Boolean.valueOf(closeConnectionProperty);
+        closeConnection = Boolean.parseBoolean(closeConnectionProperty);
       }
     }
   }

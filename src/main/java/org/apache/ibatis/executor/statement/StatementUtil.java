@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2019 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import java.sql.Statement;
 /**
  * Utility for {@link java.sql.Statement}.
  *
- * @author Kazuki Shimizu
  * @since 3.4.0
+ * @author Kazuki Shimizu
  */
 public class StatementUtil {
 
@@ -38,20 +38,14 @@ public class StatementUtil {
    * @param statement a target statement
    * @param queryTimeout a query timeout
    * @param transactionTimeout a transaction timeout
-   * @exception SQLException if a database access error occurs, this method is called on a closed <code>Statement</code>
+   * @throws SQLException if a database access error occurs, this method is called on a closed <code>Statement</code>
    */
   public static void applyTransactionTimeout(Statement statement, Integer queryTimeout, Integer transactionTimeout) throws SQLException {
-    if (transactionTimeout == null){
+    if (transactionTimeout == null) {
       return;
     }
-    Integer timeToLiveOfQuery = null;
-    if (queryTimeout == null || queryTimeout == 0) {
-      timeToLiveOfQuery = transactionTimeout;
-    } else if (transactionTimeout < queryTimeout) {
-      timeToLiveOfQuery = transactionTimeout;
-    }
-    if (timeToLiveOfQuery != null) {
-      statement.setQueryTimeout(timeToLiveOfQuery);
+    if (queryTimeout == null || queryTimeout == 0 || transactionTimeout < queryTimeout) {
+      statement.setQueryTimeout(transactionTimeout);
     }
   }
 

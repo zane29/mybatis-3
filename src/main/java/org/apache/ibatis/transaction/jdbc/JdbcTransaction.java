@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2020 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package org.apache.ibatis.transaction.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.sql.DataSource;
 
@@ -33,10 +32,9 @@ import org.apache.ibatis.transaction.TransactionException;
  * Delays connection retrieval until getConnection() is called.
  * Ignores commit or rollback requests when autocommit is on.
  *
- * @see JdbcTransactionFactory
- */
-/**
  * @author Clinton Begin
+ *
+ * @see JdbcTransactionFactory
  */
 public class JdbcTransaction implements Transaction {
 
@@ -45,12 +43,12 @@ public class JdbcTransaction implements Transaction {
   protected Connection connection;
   protected DataSource dataSource;
   protected TransactionIsolationLevel level;
-  protected boolean autoCommmit;
+  protected boolean autoCommit;
 
   public JdbcTransaction(DataSource ds, TransactionIsolationLevel desiredLevel, boolean desiredAutoCommit) {
     dataSource = ds;
     level = desiredLevel;
-    autoCommmit = desiredAutoCommit;
+    autoCommit = desiredAutoCommit;
   }
 
   public JdbcTransaction(Connection connection) {
@@ -129,7 +127,7 @@ public class JdbcTransaction implements Transaction {
     } catch (SQLException e) {
       if (log.isDebugEnabled()) {
         log.debug("Error resetting autocommit to true "
-          + "before closing the connection.  Cause: " + e);
+            + "before closing the connection.  Cause: " + e);
       }
     }
   }
@@ -142,12 +140,12 @@ public class JdbcTransaction implements Transaction {
     if (level != null) {
       connection.setTransactionIsolation(level.getLevel());
     }
-    setDesiredAutoCommit(autoCommmit);
+    setDesiredAutoCommit(autoCommit);
   }
 
   @Override
   public Integer getTimeout() throws SQLException {
     return null;
   }
-  
+
 }

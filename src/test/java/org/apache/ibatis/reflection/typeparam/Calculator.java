@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2016 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -17,6 +17,10 @@ package org.apache.ibatis.reflection.typeparam;
 
 public class Calculator<T> {
   protected T id;
+
+  private T fld;
+
+  protected T attribute;
 
   public T getId() {
     return id;

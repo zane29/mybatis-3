@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2016 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -22,6 +22,10 @@ public class Entity<T extends Serializable> {
 
   private String name;
 
+  private T fld1;
+
+  public T fld2;
+
   public T getId() {
     return id;
   }
@@ -36,5 +40,9 @@ public class Entity<T extends Serializable> {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public T getFld1() {
+    return fld1;
   }
 }
